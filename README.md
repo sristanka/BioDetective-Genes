@@ -68,7 +68,7 @@ Here are some key screenshots of the game:
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/sristanka/biodetective-genes.git
+git clone https://github.com/sristanka/BioDetective-Genes.git
 cd biodetective-genes
 ```
 
@@ -121,7 +121,7 @@ BioDetective-Genes/
 Created with ❤️ by **Sristanka Adhikary**
 
 * 🔗 [LinkedIn](https://www.linkedin.com/in/)
-* 📷 [Instagram](https://www.instagram.com/btwsris/)
+* 📷 Instagram: @btwsris
 
 ---
 
@@ -136,3 +136,4 @@ This project is licensed under the **MIT License** – feel free to use, modify,
 This is **Part 1** of the BioDetective series.
 
 Stay tuned for **BioDetective: Part 2**! 🎮
+
