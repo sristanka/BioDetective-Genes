@@ -50,18 +50,21 @@ Players graduate from **Detective 🕵️** to **Explorer 🎓** with their scor
 
 ## Screenshots
 
-## Screenshots
 Here are some key screenshots of the game:
 
 ### Home Screen / Level 1
+
 ![Home + Level 1](./screenshots/home_level1.png)
 
 ### Sidebar with Score & Hints
+
 ![Sidebar Screenshot](./screenshots/sidebar.png)
 
 ### Final Completion Screen (GIF Demo)
+
 ![Completion Demo](./screenshots/completion.gif)
 
+---
 
 ## Installation
 
@@ -111,6 +114,7 @@ BioDetective-Genes/
 ├── utils.py        # Helper functions
 ├── main.py         # Main Streamlit app
 ├── codon_table.png # Codon chart for Level 3
+├── screenshots/    # Screenshots and GIFs
 └── README.md       # Documentation
 ```
 
@@ -120,14 +124,17 @@ BioDetective-Genes/
 
 Created with ❤️ by **Sristanka Adhikary**
 
-* 🔗 [LinkedIn](https://www.linkedin.com/in/)
+* 🔗 LinkedIn: Sristanka Adhikary
 * 📷 Instagram: @btwsris
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** – feel free to use, modify, and share with attribution.
+**All rights reserved.**
+
+This project is not licensed for public use or modification.
+You may view the code and project, but any redistribution or commercial use is prohibited without permission.
 
 ---
 
@@ -136,4 +143,3 @@ This project is licensed under the **MIT License** – feel free to use, modify,
 This is **Part 1** of the BioDetective series.
 
 Stay tuned for **BioDetective: Part 2**! 🎮
-
