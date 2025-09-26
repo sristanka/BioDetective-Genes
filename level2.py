@@ -3,66 +3,67 @@ import streamlit as st
 import utils
 
 def render_level():
-    st.header("Level 2: Mutation Spotter 🔍")
-    st.markdown("**Concept:**  A gene mutation is a permanent change in the DNA sequence of a gene. Mutations can occur naturally or be caused by environmental factors. They can affect how proteins are made, sometimes causing diseases or creating new traits.")
-    st.markdown("So mutations are like tiny typos in DNA.")
+    st.header("Level 2: DNA vs RNA Identifier 🧬")
     st.markdown("""
-                **DNA is like a LEGO instruction manual.**
-                
-                Every letter is a LEGO block.
-                Mutations are like sneaky prank blocks someone swapped in:  
+    **Concept:** 
+    DNA has bases **A, T, G, C**.  
+    RNA has bases **A, U, G, C**.  
 
-                - Sometimes the LEGO set still works… 🟢  
-                - Sometimes the spaceship turns into a wobbly tower… 🔴  
+    Your task: Identify whether the given strand is **DNA** or **RNA**.
+    """)
 
-                Spot them and fix them to make the sequence correct!
-                """)
-
-
-
-    if 'level2_original' not in st.session_state:
-        originals = utils.generate_dna(length=6, count=2)
-        mutated = [utils.introduce_mutations(seq, num_mutations=2) for seq in originals]
-        st.session_state.level2_original = originals
-        st.session_state.level2_mutated = mutated
+    # Generate 2 random strands (DNA or RNA)
+    if 'level2_strands' not in st.session_state:
+        st.session_state.level2_strands = utils.generate_dna_or_rna(length=6, count=2)
 
     level_cleared = True
+    options = ["Select...", "DNA", "RNA"]  # Default "Select..." prevents preselection
 
-    for idx, (original, mutated) in enumerate(zip(st.session_state.level2_original, st.session_state.level2_mutated), start=1):
-        st.markdown(f"**Question {idx}: Correct the mutated DNA**")
-        st.markdown(f"**Mutated:** {mutated}")
+    for idx, strand_info in enumerate(st.session_state.level2_strands, start=1):
+        st.markdown(f"**Question {idx}: Identify the strand type**")
+        st.markdown(f"**Strand:** {strand_info['sequence']}")
 
-        default_value = st.session_state.level_inputs.get(f"level2_{idx}", "")
-        user_input = st.text_input(f"Corrected sequence Q{idx}:", key=f"level2_input_{idx}", value=default_value).upper().strip()
+        key = f"level2_input_{idx}"
+        if key not in st.session_state:
+            st.session_state[key] = options[0]  # Start with "Select..."
 
-        hint_shown = f"level2_hint_{idx}" in st.session_state.level_hints_shown
-        if not hint_shown:
+        user_choice = st.selectbox(
+            f"Choose the type for Q{idx}:",
+            options,
+            index=options.index(st.session_state[key]),
+            key=key
+        )
+
+        st.session_state.level_inputs[f"level2_{idx}"] = user_choice
+
+        # Hint button
+        hint_key = f"level2_hint_{idx}"
+        if hint_key not in st.session_state.level_hints_shown:
             if st.button(f"💡 Show Hint Q{idx}"):
-                st.session_state.level_hints_shown[f"level2_hint_{idx}"] = True
+                st.session_state.level_hints_shown[hint_key] = True
                 st.session_state.hints_used += 1
                 st.rerun()
-        if hint_shown:
-            st.markdown("**Hint:** Compare each base with the original. Look carefully at differences to spot mutations!")
+        if hint_key in st.session_state.level_hints_shown:
+            st.info("Hint: DNA has T (Thymine), RNA has U (Uracil). Look carefully!")
 
+        # Show answer
         if st.button(f"📝 Show Answer Q{idx}"):
-            st.markdown(f"**Correct Answer:** {original}")
-            st.markdown("**Explanation:** Only letters matching the original sequence are correct; others are mutations.")
+            st.markdown(f"**Correct Answer:** {strand_info['type']}")
 
-        if st.button(f"✅ Check Answer Q{idx}"):
-            st.session_state.level_inputs[f"level2_{idx}"] = user_input
-            if user_input == original:
-                st.success(f"🎉 Correct! Question {idx} fixed!")
-            else:
-                st.error(f"❌ Incorrect. Correct answer: {original}")
-                level_cleared = False
-
-        if st.session_state.level_inputs.get(f"level2_{idx}", "") != original:
+        # Check correctness
+        if user_choice == strand_info['type']:
+            st.success(f"✅ Correct! This is {strand_info['type']}")
+        elif user_choice != options[0]:
+            st.error(f"❌ Incorrect. Correct answer: {strand_info['type']}")
             level_cleared = False
+        else:
+            level_cleared = False  # "Select..." not considered correct
 
+    # Next level button
     if level_cleared:
-        st.success("🎉 Hurry!! Level 2 cleared")
+        st.success("🎉 Level 2 cleared!")
         if "level2_done" not in st.session_state:
-            st.session_state.score += len(st.session_state.level2_original)
+            st.session_state.score += len(st.session_state.level2_strands)
             st.session_state.level2_done = True
         if st.button("➡️ Next Level"):
             st.session_state.completed_levels.add(2)
