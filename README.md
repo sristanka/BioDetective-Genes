@@ -28,7 +28,7 @@ The game has **5 progressive levels**:
 | Level | Concept           | Activity                                    |
 | ----- | ----------------- | ------------------------------------------- |
 | 1     | DNA Base Pairing  | Build complementary DNA strands (A↔T, G↔C)  |
-| 2     | Mutation Spotting | Find and correct DNA mutations              |
+| 2     | DNA Vs RNA        | Identify whether given strand is DNA or RNA |              |
 | 3     | DNA → Protein     | Translate mRNA codons into amino acids      |
 | 4     | Cell Organelles   | Match organelles to their cellular roles    |
 | 5     | Everyday Biotech  | Connect biotech products to their processes |
@@ -143,3 +143,4 @@ You may view the code and project, but any redistribution or commercial use is p
 This is **Part 1** of the BioDetective series.
 
 Stay tuned for **BioDetective: Part 2**! 🎮
+
