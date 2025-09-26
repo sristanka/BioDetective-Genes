@@ -20,7 +20,7 @@ st.markdown("Can you solve all the biotech mysteries and earn your title as an *
 # Topics by level
 level_topics = {
     1: "DNA Base Pairing",
-    2: "Mutation Spotting",
+    2: "DNA or RNA?",
     3: "DNA → Protein",
     4: "Cell Organelles",
     5: "Everyday Biotech"
