@@ -1,6 +1,4 @@
-# utils.py
 import random
-import difflib
 
 BASES = "ATGC"
 
@@ -52,3 +50,20 @@ def translate_mrna_to_protein(mrna_seq):
     codons = mrna_seq.split()
     amino_acids = [CODON_TABLE.get(codon, "???") for codon in codons]
     return '-'.join(amino_acids)
+
+# --- NEW FUNCTION for Level 2 ---
+def generate_dna_or_rna(length=6, count=1):
+    """
+    Generate random DNA or RNA sequences.
+    Returns a list of dicts: [{'sequence': 'ATGCGT', 'type': 'DNA'}, ...]
+    """
+    sequences = []
+    for _ in range(count):
+        is_dna = random.choice([True, False])
+        if is_dna:
+            seq = ''.join(random.choice("ATGC") for _ in range(length))
+            sequences.append({'sequence': seq, 'type': 'DNA'})
+        else:
+            seq = ''.join(random.choice("AUGC") for _ in range(length))
+            sequences.append({'sequence': seq, 'type': 'RNA'})
+    return sequences
